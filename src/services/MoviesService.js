@@ -20,6 +20,10 @@ class MoviesService {
         headers
         )
     }
+
+    getAll(){
+        return axios.get('/movies')
+    }
 }
 
 export const moviesService = new MoviesService();
