@@ -8,11 +8,15 @@ Vue.use(Vuex)
 /* eslint-disable no-new */
 const store = new Vuex.Store({
   state: {
-    movies: []
+    movies: [],
+    searchTerm: ''
   },
   mutations: {
     setMovies(state, movies){
       state.movies = movies
+    },
+    setSearchTerm(state, { term }) {
+      state.searchTerm = term
     }
   },
   actions: {
@@ -24,6 +28,12 @@ const store = new Vuex.Store({
       } catch (error) { // eslint-disable-line
 
       }
+    }
+  },
+  getters: {
+    filteredMovies(state){
+      return state.movies.filter((movie) => 
+        movie.title.toLowerCase().includes(state.searchTerm.toLocaleLowerCase()))
     }
   }
 })
